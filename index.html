@@ -16,51 +16,55 @@
   <link rel="stylesheet" href="css/mdb.min.css" />
 
   <style>
-    .gradient-custom {
-      /* fallback for old browsers */
-      background: #6a11cb;
+    /* .bg-image-vertical {
+      position: relative;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: auto 100%;
+    }
 
-      /* Chrome 10-25, Safari 5.1-6 */
-      background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    @media (min-width: 1025px) {
+      .h-custom-2 {
+        height: 100%;
+      }
+    } */
 
-      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    .divider:after,
+    .divider:before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
     }
   </style>
 </head>
 
 <body>
   <!-- Start your project here-->
-  <!-- <div class="container"> -->
-  <!-- <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-      <div class="text-center"> -->
 
-  <section class="vh-100 gradient-custom">
+  <section class="vh-100">
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="images/index.png" class="img-fluid" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <form>
 
-              <div class="mb-md-5 mt-md-4 pb-5">
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">방문을 환영합니다!</h3>
+            <span class="small mb-5 pb-lg-2 text-muted">아래 버튼을 클릭하여 서비스를 시작하세요</span>
 
-                <h2 class="fw-bold mb-2 text-uppercase">환영합니다!</h2>
-                <p class="text-white-50 mb-5">아래 버튼을 클릭하여 서비스 시작!</p>
+            <!-- Submit button -->
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block"
+              onclick="location.href='login.html'">서비스 시작하기</button>
 
-                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
-                  type="submit" onClick="location.href='login.html'">시작하기</button>
-
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- </div>
-    </div> -->
-  <!-- </div> -->
   <!-- End your project here-->
 
   <!-- MDB -->
