@@ -102,7 +102,7 @@
     let itemData = JSON.parse(localStorage.getItem('itemData'));
     let userData = JSON.parse(localStorage.getItem('userData'));
     let bidData = JSON.parse(localStorage.getItem('bidData'));
-    let loginUser = localStorage.getItem('loginUser');
+    let loginUser = JSON.parse(localStorage.getItem('loginUser'));
     let selectedItem = localStorage.getItem('selectedItem');
 
     console.log(itemData);
@@ -150,7 +150,7 @@
       let count = 0;
 
       for (let bid of bidData) {
-        if (bid.id == loginUser && bid.status == true) {
+        if (bid.id == loginUser.id && bid.status == true) {
           count++;
         }
       }
@@ -181,7 +181,7 @@
       }
 
       bidData.push({
-        id: loginUser,
+        id: loginUser.id,
         itemCode: item.itemCode,
         date: new Date(),
         price: newPrice,

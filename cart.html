@@ -93,7 +93,7 @@
           </form>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
@@ -104,7 +104,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -126,7 +126,7 @@
     let itemData = JSON.parse(localStorage.getItem('itemData'));
     let userData = JSON.parse(localStorage.getItem('userData'));
     let bidData = JSON.parse(localStorage.getItem('bidData'));
-    let loginUser = localStorage.getItem('loginUser');
+    let loginUser = JSON.parse(localStorage.getItem('loginUser'));
 
     console.log(itemData);
     console.log(userData);
@@ -146,7 +146,7 @@
       let html = '';
 
       for (let i = 0; i < bidDataReverse.length; i++) {
-        if (bidDataReverse[i].id == loginUser && bidDataReverse[i].visible) {
+        if (bidDataReverse[i].id == loginUser.id && bidDataReverse[i].visible) {
 
           for (let item of itemData) {
             if (bidDataReverse[i].itemCode == item.itemCode) {
@@ -157,7 +157,7 @@
                     <td class="product-name">
                       <h2 class="h5 text-black">${item.itemName}</h2>
                     </td>
-                    <td>${bidDataReverse[i].price}</td>
+                    <td>$${bidDataReverse[i].price}</td>
                     <td>${bidDataReverse[i].status ? 'YES' : 'NO'}</td>
                     <td>${getDate(bidDataReverse[i].date)}<br>D-${differDate(item.endDate)}</td>
                     <td>${bidDataReverse[i].status ? '' : `<span class="btn btn-primary btn-sm"
@@ -176,7 +176,7 @@
       let count = 0;
 
       for (let bid of bidData) {
-        if (bid.id == loginUser && bid.status == true) {
+        if (bid.id == loginUser.id && bid.status == true) {
           count++;
         }
       }

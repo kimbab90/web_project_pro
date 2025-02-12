@@ -99,7 +99,7 @@
 
       for (let user of userData) {
         if (user.id == id && user.pw == pw) {
-          localStorage.setItem('loginUser', user.id);
+          localStorage.setItem('loginUser', JSON.stringify(user));
           alert('로그인 성공');
           location.href = "shop.html";
           return;
