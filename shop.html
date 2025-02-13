@@ -30,7 +30,7 @@
     }
 
     p.text-primary {
-      font-size: 1.2em;
+      font-size: 1.25em;
     }
 
     div.block-4-text h3 {
@@ -39,7 +39,12 @@
     }
 
     .border {
-      border: 1px #DDD solid !important;
+      border: 1px rgba(121, 113, 234, 0.5) solid !important;
+      border-radius: 10px;
+    }
+
+    .img-fluid {
+      padding: 10px;
     }
 
     .btn.btn-sm {
@@ -55,6 +60,20 @@
 
     #add-item-container {
       margin: 10px 0;
+    }
+
+    .mb-2,
+    .my-2 {
+      font-size: 0.95em;
+      color: #666;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .mb-1,
+    .my-1 {
+      font-size: 0.95em;
+      color: #333;
+      margin-bottom: 0.25rem !important;
     }
   </style>
 
@@ -80,7 +99,7 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="login.html"><span class="icon icon-person"></span></a></li>
+                  <!-- <li><a href="myInfo.html"><span class="icon icon-person"></span></a></li> -->
                   <li>
                     <a href="cart.html" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
@@ -216,9 +235,9 @@
                 </figure>
                 <div class="block-4-text p-4">
                   <h3>${itemData[i].itemName}</h3>
-                  <p class="mb-1">${itemData[i].info}</p>
+                  <p class="mb-2">${itemData[i].info}</p>
                   <p class="text-primary font-weight-bold">$${bidData[j].price}</p>
-                  <p class="mb-1">마감일자 : ${getDate(itemData[i].endDate)}</p>
+                  <p class="mb-1">종료일자 : ${getDate(itemData[i].endDate)}</p>
                   <p class="mb-0">(D-${differDate(itemData[i].endDate)})</p>
                 </div>
               </div>
