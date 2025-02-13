@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>IPCHAL &mdash; A to Z</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" /> -->
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /> -->
+  <!-- Google Fonts Roboto -->
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" /> -->
+  <!-- MDB -->
+  <!-- <link rel="stylesheet" href="css/mdb.min.css" /> -->
+
+  <style>
+    .site-navbar .site-logo a {
+      font-size: 24px;
+    }
+
+    .table-bordered td,
+    .table-bordered th {
+      border: 1px #DDD solid !important;
+    }
+
+    #div-register {
+      width: 50%;
+      min-width: 500px;
+    }
+
+    #end-date {
+      opacity: 1.0 !important;
+    }
+
+    label.form-label {
+      color: #666;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+
+    button.btn.btn-sm {
+      font-size: 18px !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="site-wrap">
+    <header class="site-navbar" role="banner">
+      <div class="site-navbar-top">
+        <div class="container">
+          <div class="row align-items-center">
+
+            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+            </div>
+
+            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+              <div class="site-logo">
+                <a href="shop.html" class="js-logo-clone">I P C H A L</a>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+              <div class="site-top-icons">
+                <ul>
+                  <li><a href="login.html"><span class="icon icon-person"></span></a></li>
+                  <li>
+                    <a href="cart.html" class="site-cart">
+                      <span class="icon icon-shopping_cart"></span>
+                      <span class="count" hidden="true">0</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="shop.html">Shop</a>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Add item</strong>
+            <span class="mx-2 mb-0">/</span>
+            <a href="login.html">LogOut</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div id="div-register">
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="item-name">상품명</label>
+            <input type="text" id="item-name" class="form-control form-control-lg" />
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="end-date">마감일자</label>
+            <input type="date" id="end-date" class="form-control form-control-lg" />
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="info">한줄평</label>
+            <input type="text" id="info" class="form-control form-control-lg" />
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="info-detail">상세정보</label>
+            <textarea name="" id="info-detail" class="form-control form-control-lg"></textarea>
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="price">시작가격 (단위$)</label>
+            <input type="number" id="price" class="form-control form-control-lg" />
+          </div>
+
+          <button class="btn btn-primary btn-sm btn-block" onclick="registerItem()">물품등록</button>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer border-top">
+    </footer>
+  </div>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="js/mdb.umd.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+  <script src="js/util.js"></script>
+
+  <script>
+    let itemData = JSON.parse(localStorage.getItem('itemData'));
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let bidData = JSON.parse(localStorage.getItem('bidData'));
+    let loginUser = JSON.parse(localStorage.getItem('loginUser'));
+
+    console.log(itemData);
+    console.log(userData);
+    console.log(bidData);
+    console.log(loginUser);
+
+    function registerItem() {
+      let itemName = document.querySelector('#item-name').value;
+      let endDate = document.querySelector('#end-date').value;
+      let info = document.querySelector('#info').value;
+      let infoDetail = document.querySelector('#info-detail').value;
+      let price = document.querySelector('#price').value;
+
+      console.log(itemName, typeof itemName);
+      console.log(endDate, typeof endDate);
+      console.log(info, typeof info);
+      console.log(infoDetail, typeof infoDetail);
+      console.log(price, typeof price);
+
+      if (itemName == '' || endDate == '' || info == '' || infoDetail == '' || price == '') {
+        alert('모든 정보를 입력주세요');
+        return;
+      }
+
+      let item = {
+        itemCode: itemData.length + 1,
+        itemName: itemName,
+        endDate: new Date(endDate),
+        info: info,
+        infoDetail: infoDetail,
+        image: (itemData.length + 1) + '.jpg'
+      }
+
+      console.log(item);
+
+      let bid = {
+        id: loginUser.id,
+        itemCode: item.itemCode,
+        date: new Date(),
+        price: parseInt(price),
+        status: true,
+        visible: true
+      }
+
+      console.log(bid);
+
+      itemData.push(item);
+      bidData.unshift(bid);
+
+      console.log(itemData);
+      console.log(bidData);
+
+      localStorage.setItem('itemData', JSON.stringify(itemData));
+      localStorage.setItem('bidData', JSON.stringify(bidData));
+
+      alert('등록되었습니다');
+
+      location.href='shop.html';
+    }
+  </script>
+
+</body>
+
+</html>
