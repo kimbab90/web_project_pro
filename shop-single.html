@@ -26,6 +26,21 @@
       -webkit-appearance: none;
       margin: 0;
     }
+
+    .site-navbar .site-logo a {
+      font-size: 24px;
+    }
+
+    .btn.btn-sm {
+      letter-spacing: normal;
+      font-size: 18px !important;
+      padding: 10px 20px !important;
+    }
+
+    p.mb-4 {
+      color: #666;
+      ;
+    }
   </style>
 
 </head>
@@ -54,11 +69,9 @@
                   <li>
                     <a href="cart.html" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
-                      <span class="count">0</span>
+                      <span class="count" hidden="true">0</span>
                     </a>
                   </li>
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                        class="icon-menu"></span></a></li>
                 </ul>
               </div>
             </div>
@@ -71,8 +84,13 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span> <strong
-              class="text-black" id="strong_item_name"></strong></div>
+          <div class="col-md-12 mb-0">
+            <a href="shop.html">Shop</a>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Detail</strong>
+            <span class="mx-2 mb-0">/</span>
+            <a href="login.html">LogOut</a>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +115,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/util.js"></script>
 
   <script>
     let itemData = JSON.parse(localStorage.getItem('itemData'));
@@ -121,15 +140,13 @@
 
     function drawItem() {
 
-      document.querySelector('#strong_item_name').innerHTML = item.itemName;
-
       let html = `<div class="col-md-6">
             <img src="images/items/${item.image}" class="img-fluid">
           </div>
 
           <div class="col-md-6">
             <h2 class="text-black">${item.itemName}</h2>
-            <p>${item.info}</p>
+            <p class="mb-4">${item.info}</p>
             <p class="mb-4">${item.infoDetail}</p>
             <p><strong class="text-primary h4">$${price}</strong></p>
             <div class="mb-1 d-flex">
@@ -140,37 +157,46 @@
                   aria-label="Example text with button addon" aria-describedby="button-addon1" >
               </div>
             </div>
-            <p class="buy-now btn btn-sm btn-primary" onclick="makeBid()"">입 찰 하 기</p>
+            <p class="buy-now btn btn-sm btn-primary" onclick="makeBid()">입찰하기</p>
           </div>`;
 
       document.querySelector('#item_box').innerHTML = html;
     }
 
-    function drawCart() {
-      let count = 0;
+    // function drawCart() {
+    //   if (loginUser.grade == "admin") {
+    //     countIcon.hidden = true;
+    //     return;
+    //   }
+    //   let count = 0;
 
-      for (let bid of bidData) {
-        if (bid.id == loginUser.id && bid.status == true) {
-          count++;
-        }
-      }
+    //   for (let bid of bidData) {
+    //     if (bid.id == loginUser.id && bid.status == true) {
+    //       count++;
+    //     }
+    //   }
 
-      let countIcon = document.querySelector('span.count');
+    //   let countIcon = document.querySelector('span.count');
 
-      if (count == 0) {
-        countIcon.hidden = true;
-      } else {
-        countIcon.hidden = false;
-        countIcon.innerHTML = count;
-      }
-    }
+    //   if (count == 0) {
+    //     countIcon.hidden = true;
+    //   } else {
+    //     countIcon.hidden = false;
+    //     countIcon.innerHTML = count;
+    //   }
+    // }
 
     function makeBid() {
 
+      if (loginUser.grade == "admin") {
+        alert('관리자는 입찰에 참여할 수 없습니다!');
+        return;
+      }
+
       let newPrice = parseInt(document.querySelector('input[type="number"].form-control').value);
 
-      if (newPrice <= getPrice() || getPrice() < 0) {
-        alert('기존 입찰가 이상 입력해주세요');
+      if (newPrice <= getPrice() || getPrice() < 0 || isNaN(newPrice)) {
+        alert('최고 입찰가 보다 큰 금액 입력해주세요');
         return;
       }
 
@@ -180,7 +206,7 @@
         }
       }
 
-      bidData.push({
+      bidData.unshift({
         id: loginUser.id,
         itemCode: item.itemCode,
         date: new Date(),
@@ -200,14 +226,14 @@
       drawCart();
     }
 
-    function getPrice() {
-      for (let i = 0; i < bidData.length; i++) {
-        if (item.itemCode == bidData[i].itemCode && bidData[i].status) {
-          return bidData[i].price;
-        }
-      }
-      return -1;
-    }
+    // function getPrice() {
+    //   for (let i = 0; i < bidData.length; i++) {
+    //     if (item.itemCode == bidData[i].itemCode && bidData[i].status) {
+    //       return bidData[i].price;
+    //     }
+    //   }
+    //   return -1;
+    // }
   </script>
 </body>
 

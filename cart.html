@@ -20,6 +20,17 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <style>
+    .site-navbar .site-logo a {
+      font-size: 24px;
+    }
+
+    .table-bordered td,
+    .table-bordered th {
+      border: 1px #DDD solid !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -46,11 +57,9 @@
                   <li>
                     <a href="cart.html" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
-                      <span class="count">0</span>
+                      <span class="count" hidden="true">0</span>
                     </a>
                   </li>
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                        class="icon-menu"></span></a></li>
                 </ul>
               </div>
             </div>
@@ -63,8 +72,13 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span> <strong
-              class="text-black">Cart</strong></div>
+          <div class="col-md-12 mb-0">
+            <a href="shop.html">Shop</a>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Cart</strong>
+            <span class="mx-2 mb-0">/</span>
+            <a href="login.html">LogOut</a>
+          </div>
         </div>
       </div>
     </div>
@@ -81,7 +95,7 @@
                     <th class="product-name">Product</th>
                     <th class="product-price">Price</th>
                     <th class="product-price">The highest<br>bidder</th>
-                    <th class="product-price">Date</th>
+                    <th class="product-price">End date</th>
                     <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
@@ -121,6 +135,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/util.js"></script>
 
   <script>
     let itemData = JSON.parse(localStorage.getItem('itemData'));
@@ -133,98 +148,143 @@
     console.log(bidData);
     console.log(loginUser);
 
-    let bidDataReverse = bidData.reverse();
-
     drawItem();
 
     drawCart();
 
+    // function selectItem(index = int) {
+    //   console.log(index);
+
+    //   localStorage.setItem("selectedItem", JSON.stringify(itemData[index]));
+
+    //   location.href = "shop-single.html";
+    // }
+
     function drawItem() {
 
-      console.log(bidDataReverse);
+      console.log(bidData);
 
-      let html = '';
+      if (loginUser.grade == "admin") {
 
-      for (let i = 0; i < bidDataReverse.length; i++) {
-        if (bidDataReverse[i].id == loginUser.id && bidDataReverse[i].visible) {
+        let html = '';
 
-          for (let item of itemData) {
-            if (bidDataReverse[i].itemCode == item.itemCode) {
-              html += `<tr>
-                    <td class="product-thumbnail">
-                      <img src="images/items/${item.image}" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">${item.itemName}</h2>
-                    </td>
-                    <td>$${bidDataReverse[i].price}</td>
-                    <td>${bidDataReverse[i].status ? 'YES' : 'NO'}</td>
-                    <td>${getDate(bidDataReverse[i].date)}<br>D-${differDate(item.endDate)}</td>
-                    <td>${bidDataReverse[i].status ? '' : `<span class="btn btn-primary btn-sm"
-                        onclick="remove(${i})">X</span>`}</td>
-                  </tr>`;
+        for (let i = 0; i < bidData.length; i++) {
+          if (bidData[i].id != loginUser.id) {
 
-              document.querySelector('#bid_list').innerHTML = html;
-              break;
+            for (let j = 0; j < itemData.length; j++) {
+              if (bidData[i].itemCode == itemData[j].itemCode) {
+                html += `<tr>
+              <td class="product-thumbnail">
+                <img src="images/items/${itemData[j].image}" alt="Image" class="img-fluid" 
+                onclick="selectItem(${j})">
+              </td>
+              <td class="product-name">
+                <span class="h5">${itemData[j].itemName}</span>
+              </td>
+              <td><span class="text-primary h5">$${bidData[i].price}</span></td>
+              <td><span class="h5">${bidData[i].status ? 'YES' : 'NO'}</span><br>
+                <span class="h5">(${bidData[i].id})</span>
+                </td>
+              <td><span class="h5">${getDate(bidData[i].date)}<br>(D-${differDate(itemData[j].endDate)})</span></td>
+              <td></td>
+            </tr>`;
+
+                document.querySelector('#bid_list').innerHTML = html;
+                break;
+              }
+            }
+          }
+        }
+      } else {
+        let html = '';
+
+        for (let i = 0; i < bidData.length; i++) {
+          if (bidData[i].id == loginUser.id && bidData[i].visible) {
+
+            for (let j = 0; j < itemData.length; j++) {
+              if (bidData[i].itemCode == itemData[j].itemCode) {
+                html += `<tr>
+              <td class="product-thumbnail">
+                <img src="images/items/${itemData[j].image}" alt="Image" class="img-fluid" 
+                onclick="selectItem(${j})">
+              </td>
+              <td class="product-name">
+                <span class="h5">${itemData[j].itemName}</span>
+              </td>
+              <td><span class="text-primary h5">$${bidData[i].price}</span></td>
+              <td><span class="h5">${bidData[i].status ? 'YES' : 'NO'}</span></td>
+              <td><span class="h5">${getDate(bidData[i].date)}<br>(D-${differDate(itemData[j].endDate)})</span></td>
+              <td>${bidData[i].status ? '' : `<span class="btn btn-primary btn-sm"
+                  onclick="remove(${i})">X</span>`}</td>
+            </tr>`;
+
+                document.querySelector('#bid_list').innerHTML = html;
+                break;
+              }
             }
           }
         }
       }
     }
 
-    function drawCart() {
-      let count = 0;
+    // function drawCart() {
+    //   if (loginUser.grade == "admin") {
+    //     countIcon.hidden = true;
+    //     return;
+    //   }
 
-      for (let bid of bidData) {
-        if (bid.id == loginUser.id && bid.status == true) {
-          count++;
-        }
-      }
+    //   let count = 0;
 
-      let countIcon = document.querySelector('span.count');
+    //   for (let bid of bidData) {
+    //     if (bid.id == loginUser.id && bid.status == true) {
+    //       count++;
+    //     }
+    //   }
 
-      if (count == 0) {
-        countIcon.hidden = true;
-      } else {
-        countIcon.innerHTML = count;
-      }
-    }
+    //   let countIcon = document.querySelector('span.count');
+
+    //   if (count == 0) {
+    //     countIcon.hidden = true;
+    //   } else {
+    //     countIcon.innerHTML = count;
+    //   }
+    // }
 
     function remove(i = int) {
-      bidDataReverse[i].visible = false;
+      bidData[i].visible = false;
 
-      localStorage.setItem('bidData', JSON.stringify(bidDataReverse.reverse()));
+      localStorage.setItem('bidData', JSON.stringify(bidData));
 
       drawItem();
     }
 
-    function getDate(date) {
-      console.log(typeof date);
-      date = new Date(date);
-      console.log(typeof date);
+    // function getDate(date) {
+    //   console.log(typeof date);
+    //   date = new Date(date);
+    //   console.log(typeof date);
 
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
+    //   const year = date.getFullYear();
+    //   const month = date.getMonth() + 1;
+    //   const day = date.getDate();
 
-      return year + '-' + month + '-' + day;
-    }
+    //   return year + '-' + month + '-' + day;
+    // }
 
-    function differDate(date) {
-      console.log(date);
-      date = new Date(date);
+    // function differDate(date) {
+    //   console.log(date);
+    //   date = new Date(date);
 
-      const now = new Date();
+    //   const now = new Date();
 
-      const dateTime = date.getTime();
-      const nowTime = now.getTime();
+    //   const dateTime = date.getTime();
+    //   const nowTime = now.getTime();
 
-      const difference = dateTime - nowTime;
+    //   const difference = dateTime - nowTime;
 
-      const msPerDay = 24 * 60 * 60 * 1000;
+    //   const msPerDay = 24 * 60 * 60 * 1000;
 
-      return Math.round(difference / msPerDay)
-    }
+    //   return Math.round(difference / msPerDay)
+    // }
   </script>
 
 </body>

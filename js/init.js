@@ -2,178 +2,46 @@
 
 let itemData = [{
   itemCode: 1,
-  itemName: '샤넬 핸드백',
+  itemName: 'RYZEN 7',
   endDate: new Date(2025, 2, 20),
-  info: '샤넬 최고!',
-  infoDetail: `You say it's changed
-Show must go on, behave
-오랜만에 옛 노래해
-I'm feelin' like I never left
-(That's right) I never left
-But you ain't know, O.K then lights, camera
-Act like you know
-Don't play on me, no, we're
-Airbnb, you're homeless
-혼비백산-해진-미-장센 (Mise-en-scène)
-도레미파시도 (Now, you know it)
-두껍아 두껍아 came with the troops
-뜯고 맛보고 즐기고 big bang when I shoot
-King in the zoo, he gotta do what I do
-One of one, not of them (Mirror)
-Man in the views aimin' at you
-Yeah, I'm aiming at a man, and amen, achoo
-Bless you, all cleaned house, fu
-Golden days are still alive
-외롭다는 말하지 마
-내가 있는 곳, 네가 있을 곳
-The place that I belong
-Home sweet home
-Home sick home`,
-  image: 'item_1.jpg'
+  info: 'AMD 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '1.jpg'
 }, {
   itemCode: 2,
-  itemName: '샤넬 핸드백',
+  itemName: 'RYZEN 9',
   endDate: new Date(2025, 2, 21),
-  info: '샤넬 역시 최고!',
-  infoDetail: `채영이가 좋아하는 랜덤 게임, 랜덤 게임
-Game start
-아파트, 아파트, 아파트, 아파트
-아파트, 아파트, uh, uh-huh, uh-huh
-아파트, 아파트, 아파트, 아파트
-아파트, 아파트, uh, uh-huh, uh-huh
-Kissy face, kissy face sent to your phone, but
-I'm trying to kiss your lips for real (uh-huh, uh-huh)
-Red hearts, red hearts, that's what I'm on, yeah
-Come give me somethin' I can feel, oh-oh-oh
-Don't you want me like I want you, baby?
-Don't you need me like I need you now?
-Sleep tomorrow, but tonight go crazy
-All you gotta do is just meet me at the
-아파트, 아파트, 아파트, 아파트
-아파트, 아파트, uh, uh-huh, uh-huh
-아파트, 아파트, 아파트, 아파트
-아파트, 아파트, uh, uh-huh, uh-huh`,
-  image: 'item_2.jpg'
+  info: 'AMD 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '2.jpg'
 }, {
   itemCode: 3,
-  itemName: '저택',
+  itemName: 'intel i5',
   endDate: new Date(2025, 2, 22),
-  info: '내 집 마련의 꿈을 실현하세요',
-  infoDetail: `You say it's changed
-Show must go on, behave
-오랜만에 옛 노래해
-I'm feelin' like I never left
-(That's right) I never left
-But you ain't know, O.K then lights, camera
-Act like you know
-Don't play on me, no, we're
-Airbnb, you're homeless
-혼비백산-해진-미-장센 (Mise-en-scène)
-도레미파시도 (Now, you know it)
-두껍아 두껍아 came with the troops
-뜯고 맛보고 즐기고 big bang when I shoot
-King in the zoo, he gotta do what I do
-One of one, not of them (Mirror)
-Man in the views aimin' at you
-Yeah, I'm aiming at a man, and amen, achoo
-Bless you, all cleaned house, fu
-Golden days are still alive
-외롭다는 말하지 마
-내가 있는 곳, 네가 있을 곳
-The place that I belong
-Home sweet home
-Home sick home`,
-  image: 'item_3.jpg'
+  info: '인텔 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '3.jpg'
 }, {
   itemCode: 4,
-  itemName: '저택',
+  itemName: 'intel i7',
   endDate: new Date(2025, 2, 23),
-  info: '내 집 마련의 꿈을 다시 실현하세요',
-  infoDetail: `You say it's changed
-Show must go on, behave
-오랜만에 옛 노래해
-I'm feelin' like I never left
-(That's right) I never left
-But you ain't know, O.K then lights, camera
-Act like you know
-Don't play on me, no, we're
-Airbnb, you're homeless
-혼비백산-해진-미-장센 (Mise-en-scène)
-도레미파시도 (Now, you know it)
-두껍아 두껍아 came with the troops
-뜯고 맛보고 즐기고 big bang when I shoot
-King in the zoo, he gotta do what I do
-One of one, not of them (Mirror)
-Man in the views aimin' at you
-Yeah, I'm aiming at a man, and amen, achoo
-Bless you, all cleaned house, fu
-Golden days are still alive
-외롭다는 말하지 마
-내가 있는 곳, 네가 있을 곳
-The place that I belong
-Home sweet home
-Home sick home`,
-  image: 'item_4.jpg'
+  info: '인텔 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '4.jpg'
 }, {
   itemCode: 5,
-  itemName: '루이비통 핸드백',
+  itemName: 'RTX 5080 MASTER',
   endDate: new Date(2025, 2, 24),
-  info: '루이비통 최고!',
-  infoDetail: `You say it's changed
-Show must go on, behave
-오랜만에 옛 노래해
-I'm feelin' like I never left
-(That's right) I never left
-But you ain't know, O.K then lights, camera
-Act like you know
-Don't play on me, no, we're
-Airbnb, you're homeless
-혼비백산-해진-미-장센 (Mise-en-scène)
-도레미파시도 (Now, you know it)
-두껍아 두껍아 came with the troops
-뜯고 맛보고 즐기고 big bang when I shoot
-King in the zoo, he gotta do what I do
-One of one, not of them (Mirror)
-Man in the views aimin' at you
-Yeah, I'm aiming at a man, and amen, achoo
-Bless you, all cleaned house, fu
-Golden days are still alive
-외롭다는 말하지 마
-내가 있는 곳, 네가 있을 곳
-The place that I belong
-Home sweet home
-Home sick home`,
-  image: 'item_5.jpg'
+  info: 'NVIDIA 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '5.jpg'
 }, {
   itemCode: 6,
-  itemName: '루이비통 핸드백',
+  itemName: 'RTX 5080 MASTER ICE',
   endDate: new Date(2025, 2, 25),
-  info: '루이비통 역시 최고!',
-  infoDetail: `You say it's changed
-Show must go on, behave
-오랜만에 옛 노래해
-I'm feelin' like I never left
-(That's right) I never left
-But you ain't know, O.K then lights, camera
-Act like you know
-Don't play on me, no, we're
-Airbnb, you're homeless
-혼비백산-해진-미-장센 (Mise-en-scène)
-도레미파시도 (Now, you know it)
-두껍아 두껍아 came with the troops
-뜯고 맛보고 즐기고 big bang when I shoot
-King in the zoo, he gotta do what I do
-One of one, not of them (Mirror)
-Man in the views aimin' at you
-Yeah, I'm aiming at a man, and amen, achoo
-Bless you, all cleaned house, fu
-Golden days are still alive
-외롭다는 말하지 마
-내가 있는 곳, 네가 있을 곳
-The place that I belong
-Home sweet home
-Home sick home`,
-  image: 'item_6.jpg'
+  info: 'NVIDIA 최고!',
+  infoDetail: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  image: '6.jpg'
 }]
 
 let userData = [{
@@ -195,25 +63,25 @@ let userData = [{
 let bidData = [{
     id: 'user01',
     itemCode: 1,
-    date: new Date(2025, 2, 9),
-    price: 950,
-    status: false,
-    visible: true
-  },
-  {
-    id: 'user02',
-    itemCode: 1,
-    date: new Date(2025, 2, 10),
-    price: 1000,
+    date: new Date(2025, 2, 13),
+    price: 1100,
     status: true,
     visible: true
   },
   {
     id: 'user02',
-    itemCode: 2,
-    date: new Date(2025, 2, 11),
-    price: 2000,
+    itemCode: 1,
+    date: new Date(2025, 2, 13),
+    price: 1000,
     status: false,
+    visible: true
+  },
+  {
+    id: 'user02',
+    itemCode: 2,
+    date: new Date(2025, 2, 12),
+    price: 2200,
+    status: true,
     visible: true
   },
   {
@@ -221,7 +89,7 @@ let bidData = [{
     itemCode: 2,
     date: new Date(2025, 2, 12),
     price: 2100,
-    status: true,
+    status: false,
     visible: true
   },
   {

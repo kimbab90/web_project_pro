@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>IP-CHAL</title>
+  <title>IPCHAL</title>
   <!-- MDB icon -->
   <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
   <!-- Font Awesome -->
@@ -78,20 +78,28 @@
 
     function register() {
 
-      let id = document.querySelector('#typeEmailX').value;
-      let pw = document.querySelector('#typePasswordX').value;
+      let idInput = document.querySelector('#typeEmailX');
+      let pwInput = document.querySelector('#typePasswordX');
+      let id = idInput.value;
+      let pw = pwInput.value;
 
       if (id.length < 4 || id.length > 15) {
         alert('id는 4자 이상, 15자 이하로 입력해주세요');
+        idInput.value = '';
+        idInput.focus();
         return;
       } else if (pw.length < 4) {
         alert('비밀번호는 4자 이상으로 입력해주세요');
+        pwInput.value = '';
+        pwInput.focus();
         return;
       }
 
       for (let user of userData) {
         if (user.id == id) {
           alert('사용 불가능한 아이디 입니다');
+          idInput.value = '';
+          idInput.focus();
           return;
         }
       }
@@ -106,7 +114,6 @@
 
       alert('회원가입이 완료되었습니다');
       location.href = "login.html";
-
     }
   </script>
 </body>

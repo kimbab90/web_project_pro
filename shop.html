@@ -19,6 +19,45 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <style>
+    .site-navbar .site-logo a {
+      font-size: 24px;
+    }
+
+    p.mb-0 {
+      color: #666;
+      font-weight: bold;
+    }
+
+    p.text-primary {
+      font-size: 1.2em;
+    }
+
+    div.block-4-text h3 {
+      color: #666;
+      font-weight: bold;
+    }
+
+    .border {
+      border: 1px #DDD solid !important;
+    }
+
+    .btn.btn-sm {
+      font-size: 18px !important;
+      padding: 10px 20px !important;
+    }
+
+    @media (min-width: 768px) {
+      .site-section {
+        padding: 0 0 5em 0;
+      }
+    }
+
+    #add-item-container {
+      margin: 10px 0;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -45,11 +84,9 @@
                   <li>
                     <a href="cart.html" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
-                      <span class="count">0</span>
+                      <span class="count" hidden="true">0</span>
                     </a>
                   </li>
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                        class="icon-menu"></span></a></li>
                 </ul>
               </div>
             </div>
@@ -59,30 +96,36 @@
       </div>
     </header>
 
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="">Shop</a>
+            <span class="mx-2 mb-0">/</span>
+            <strong class="text-black" id="strong_user_id"></strong>
+            <span class="mx-2 mb-0">/</span>
+            <a href="login.html">LogOut</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="site-section">
       <div class="container">
-
+        <div class="row" id="add-item-container">
+          <button class="btn btn-primary btn-sm btn-block" id="add_item" hidden="true"
+            onclick="location.href='registerItem.html'">물품등록</button>
+        </div>
         <div class="row mb-5">
           <div class="row mb-5" id="item_box">
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block" id="add_item" hidden="true">상품 추가</button>
-              </div>
-              <!-- <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
-              </div> -->
-            </div>
-          </div>
-        </div>
       </div>
-
-      <footer class="site-footer border-top">
-      </footer>
     </div>
+
+    <footer class="site-footer border-top">
+    </footer>
+  </div>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -94,6 +137,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/util.js"></script>
 
   <script>
     let itemData = JSON.parse(localStorage.getItem('itemData'));
@@ -110,33 +154,54 @@
 
     drawItem();
 
-    function selectItem(index) {
-      console.log(index);
+    checkAdmin();
 
-      localStorage.setItem("selectedItem", JSON.stringify(itemData[index]));
-
-      location.href = "shop-single.html";
-    }
-
-    function drawCart() {
-      let count = 0;
-
-      for (let bid of bidData) {
-        if (bid.id == loginUser.id && bid.status == true) {
-          count++;
-        }
-      }
-
-      let countIcon = document.querySelector('span.count');
-
-      if (count == 0) {
-        countIcon.hidden = true;
+    function checkAdmin() {
+      if (loginUser.grade == "admin") {
+        document.querySelector('#add_item').hidden = false;
       } else {
-        countIcon.innerHTML = count;
+        document.querySelector('#add_item').hidden = true;
       }
     }
+
+    // function selectItem(index) {
+    //   console.log(index);
+
+    //   localStorage.setItem("selectedItem", JSON.stringify(itemData[index]));
+
+    //   location.href = "shop-single.html";
+    // }
+
+    // function drawCart() {
+    //   if (loginUser.grade == "admin") {
+    //     countIcon.hidden = true;
+    //     return;
+    //   }
+
+    //   let count = 0;
+
+    //   for (let bid of bidData) {
+    //     if (bid.id == loginUser.id && bid.status == true) {
+    //       count++;
+    //     }
+    //   }
+
+    //   let countIcon = document.querySelector('span.count');
+
+    //   if (count == 0) {
+    //     countIcon.hidden = true;
+    //   } else {
+    //     countIcon.innerHTML = count;
+    //   }
+    // }
 
     function drawItem() {
+
+      let welcome = loginUser.id +
+        ' 님,  환영합니다' +
+        (loginUser.grade == 'admin' ? '(관리자)' : '');
+
+      document.querySelector('#strong_user_id').innerHTML = welcome;
 
       for (let i = 0; i < itemData.length; i++) {
 
@@ -147,18 +212,21 @@
             let html = `<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
               <div class="block-4 text-center border">
                 <figure class="block-4-image"><img src="images/items/${itemData[i].image}" alt="Image placeholder" class="img-fluid"
-                    onclick="selectItem(item${itemData[i].itemCode}.value)">
-                  <input type="number" id="item${itemData[i].itemCode}" value="${i}" hidden>
+                    onclick="selectItem(${i})">
                 </figure>
                 <div class="block-4-text p-4">
                   <h3>${itemData[i].itemName}</h3>
-                  <p class="mb-0">${itemData[i].info}</p>
+                  <p class="mb-1">${itemData[i].info}</p>
                   <p class="text-primary font-weight-bold">$${bidData[j].price}</p>
-                  <h5>마감일자 : ${getDate(itemData[i].endDate)}</h5>
+                  <p class="mb-1">마감일자 : ${getDate(itemData[i].endDate)}</p>
                   <p class="mb-0">(D-${differDate(itemData[i].endDate)})</p>
                 </div>
               </div>
             </div>`
+
+            // <figure class="block-4-image"><img src="images/items/${itemData[i].image}" alt="Image placeholder" class="img-fluid"
+            //         onclick="selectItem(item${itemData[i].itemCode}.value)">
+            //       <input type="number" id="item${itemData[i].itemCode}" value="${i}" hidden>
 
             document.querySelector('#item_box').insertAdjacentHTML('beforeEnd', html);
           }
@@ -166,30 +234,30 @@
       }
     }
 
-    function getDate(date) {
-      date = new Date(date);
+    // function getDate(date) {
+    //   date = new Date(date);
 
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
+    //   const year = date.getFullYear();
+    //   const month = date.getMonth() + 1;
+    //   const day = date.getDate();
 
-      return year + '-' + month + '-' + day;
-    }
+    //   return year + '-' + month + '-' + day;
+    // }
 
-    function differDate(date) {
-      date = new Date(date);
+    // function differDate(date) {
+    //   date = new Date(date);
 
-      const now = new Date();
+    //   const now = new Date();
 
-      const dateTime = date.getTime();
-      const nowTime = now.getTime();
+    //   const dateTime = date.getTime();
+    //   const nowTime = now.getTime();
 
-      const difference = dateTime - nowTime;
+    //   const difference = dateTime - nowTime;
 
-      const msPerDay = 24 * 60 * 60 * 1000;
+    //   const msPerDay = 24 * 60 * 60 * 1000;
 
-      return Math.round(difference / msPerDay)
-    }
+    //   return Math.round(difference / msPerDay)
+    // }
   </script>
 
 </body>
